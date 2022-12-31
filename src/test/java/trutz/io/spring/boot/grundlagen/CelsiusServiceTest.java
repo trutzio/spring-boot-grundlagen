@@ -25,7 +25,10 @@ public class CelsiusServiceTest {
 
 	static Stream<Arguments> celsiusFahrenheitProvider() {
 		return Stream.of( //
-				arguments(30.0, 86.0) //
+				arguments(0.0, 32.0), // the freezing point of water
+				arguments(30.0, 86.0), // a hot day
+				arguments(37.0, 98.6), // body temperature
+				arguments(100.0, 212.0) // boiling point of water at sea level
 		);
 	}
 
