@@ -1,6 +1,5 @@
 package trutz.io.spring.boot.grundlagen;
 
-
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
