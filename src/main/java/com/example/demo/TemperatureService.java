@@ -5,8 +5,15 @@ import org.springframework.stereotype.Service;
 @Service
 class TemperatureService {
 
+    /**
+     * Berechnet Grad Celsius in Grad Fahrenheit.
+     * Siehe auch https://www.fahrenheit-umrechnen.de/
+     * 
+     * @param celsius Grad Celsius
+     * @return Grad Fahrenheit
+     */
     Double toFahrenheit(Double celsius) {
-        return celsius.doubleValue() * 1.8 + 32;
+        return celsius * 1.8d + 32;
     }
 
 }
