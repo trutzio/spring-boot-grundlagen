@@ -1,0 +1,7 @@
+spring:
+    application:
+        name: Demo
+    datasource:
+        url: jdbc:postgresql://localhost:5432/testdb
+        username: testuser
+        password: secret
