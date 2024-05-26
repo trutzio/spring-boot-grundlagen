@@ -5,3 +5,14 @@ spring:
         url: jdbc:postgresql://localhost:5432/testdb
         username: testuser
         password: secret
+otel:
+    logs:
+        exporter: none
+    metrics:
+        exporter: none
+logging:
+    level:
+        io:
+            opentelemetry:
+                exporter:
+                    logging: OFF

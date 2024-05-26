@@ -1,7 +1,7 @@
 version: '3'
 services:
   postgres:
-    image: postgres:16
+    image: postgres:16.3-alpine3.20
     environment:
       POSTGRES_DB: testdb
       POSTGRES_USER: testuser
@@ -10,5 +10,27 @@ services:
       - 5432:5432
     volumes:
       - postgres-storage:/var/lib/postgresql/data
+  tempo:
+    image: grafana/tempo
+    user: "0:0" # wichtig, da sich der Container sonst nicht starten lässt
+    command: 
+      - "-config.file"
+      - "/etc/tempo.yml"
+    ports:
+      - "4318:4318" # otlp http
+    volumes:
+      - ./src/main/docker/tempo/tempo.yml:/etc/tempo.yml
+      - tempo-storage:/tmp/tempo/
+  grafana:
+    image: grafana/grafana-enterprise
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./src/main/docker/grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - tempo
 volumes:
   postgres-storage: {}
+  tempo-storage: {}
+  grafana-storage: {}
