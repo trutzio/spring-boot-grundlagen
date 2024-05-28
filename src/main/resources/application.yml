@@ -24,6 +24,8 @@ spring:
     password: secret
     url: jdbc:postgresql://localhost:5432/testdb
     username: testuser
+    hikari:
+      maximum-pool-size: 2
   jpa:
     hibernate:
       ddl-auto: update
