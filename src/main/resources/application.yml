@@ -1,18 +1,29 @@
-spring:
-    application:
-        name: Demo
-    datasource:
-        url: jdbc:postgresql://localhost:5432/testdb
-        username: testuser
-        password: secret
-otel:
-    logs:
-        exporter: none
-    metrics:
-        exporter: none
 logging:
-    level:
-        io:
-            opentelemetry:
-                exporter:
-                    logging: OFF
+  level:
+    io:
+      opentelemetry:
+        exporter:
+          logging: 'OFF'
+management:
+  endpoint:
+    env:
+      show-values: always
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus,env
+otel:
+  logs:
+    exporter: none
+  metrics:
+    exporter: none
+spring:
+  application:
+    name: Demo
+  datasource:
+    password: secret
+    url: jdbc:postgresql://localhost:5432/testdb
+    username: testuser
+  jpa:
+    hibernate:
+      ddl-auto: update

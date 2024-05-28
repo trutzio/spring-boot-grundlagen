@@ -15,12 +15,20 @@ services:
     user: "0:0" # wichtig, da sich der Container sonst nicht starten lässt
     command: 
       - "-config.file"
-      - "/etc/tempo.yml"
+      - "/etc/tempo.yaml"
     ports:
       - "4318:4318" # otlp http
     volumes:
-      - ./src/main/docker/tempo/tempo.yml:/etc/tempo.yml
+      - ./src/main/docker/tempo/tempo.yaml:/etc/tempo.yaml
       - tempo-storage:/tmp/tempo/
+  prometheus:
+    image: prom/prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    volumes:
+      - ./src/main/docker/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
   grafana:
     image: grafana/grafana-enterprise
     ports:

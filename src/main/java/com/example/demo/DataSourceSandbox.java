@@ -12,6 +12,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import io.opentelemetry.instrumentation.annotations.WithSpan;
+
 @Component
 public class DataSourceSandbox implements ApplicationRunner {
 
@@ -27,6 +29,7 @@ public class DataSourceSandbox implements ApplicationRunner {
     }
 
     @Override
+    @WithSpan
     public void run(ApplicationArguments args) throws Exception {
         log.info(dataSource.toString());
 
