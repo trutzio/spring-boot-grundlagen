@@ -1,31 +1,9 @@
-logging:
-  level:
-    io:
-      opentelemetry:
-        exporter:
-          logging: 'OFF'
-management:
-  endpoint:
-    env:
-      show-values: always
-  endpoints:
-    web:
-      exposure:
-        include: health,prometheus,env
-otel:
-  logs:
-    exporter: none
-  metrics:
-    exporter: none
 spring:
   application:
     name: Demo
-  datasource:
-    password: secret
-    url: jdbc:postgresql://localhost:5432/testdb
-    username: testuser
-    hikari:
-      maximum-pool-size: 2
   jpa:
     hibernate:
       ddl-auto: update
+  docker:
+    compose:
+      lifecycle-management: start-only

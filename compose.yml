@@ -10,35 +10,5 @@ services:
       - 5432:5432
     volumes:
       - postgres-storage:/var/lib/postgresql/data
-  tempo:
-    image: grafana/tempo
-    user: "0:0" # wichtig, da sich der Container sonst nicht starten lässt
-    command: 
-      - "-config.file"
-      - "/etc/tempo.yaml"
-    ports:
-      - "4318:4318" # otlp http
-    volumes:
-      - ./src/main/docker/tempo/tempo.yaml:/etc/tempo.yaml
-      - tempo-storage:/tmp/tempo/
-  prometheus:
-    image: prom/prometheus
-    command:
-      - --config.file=/etc/prometheus/prometheus.yml
-    ports:
-      - 9090:9090
-    volumes:
-      - ./src/main/docker/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
-  grafana:
-    image: grafana/grafana-enterprise
-    ports:
-      - 3000:3000
-    volumes:
-      - grafana-storage:/var/lib/grafana
-      - ./src/main/docker/grafana/datasources:/etc/grafana/provisioning/datasources
-    depends_on:
-      - tempo
 volumes:
   postgres-storage: {}
-  tempo-storage: {}
-  grafana-storage: {}
