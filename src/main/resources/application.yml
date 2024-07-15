@@ -7,3 +7,4 @@ spring:
   docker:
     compose:
       lifecycle-management: start-only
+      
