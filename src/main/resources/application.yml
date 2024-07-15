@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: Demo
+  jpa:
+    hibernate:
+      ddl-auto: update
+  docker:
+    compose:
+      lifecycle-management: start-only
+      
